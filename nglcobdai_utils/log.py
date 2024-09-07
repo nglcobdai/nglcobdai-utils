@@ -18,7 +18,7 @@ class Logger:
         self.jst = pytz.timezone("Asia/Tokyo")
         self._set_logger(log_file)
 
-    def _jst_time(self):
+    def _jst_time(self, *args):
         """Get Japan Standard Time
 
         Returns:
