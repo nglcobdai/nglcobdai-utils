@@ -2,7 +2,6 @@ import logging
 import os
 from datetime import datetime
 from logging import DEBUG, FileHandler, Formatter, StreamHandler, getLogger
-from time import time
 
 import pytz
 
@@ -16,16 +15,8 @@ class Logger:
             log_file (str, optional): File name of the log(None).
         """
         self.logger = getLogger(name)
-
-        log_level = os.getenv("LOGGING_LEVEL", "DEBUG").upper()
-        numeric_level = getattr(logging, log_level, DEBUG)
-
         self.jst = pytz.timezone("Asia/Tokyo")
-
-        if log_file is None:
-            log_file = time().strftime("%Y%m%d%H%M%S") + ".log"
-
-        self._set_logger(numeric_level, log_file)
+        self._set_logger(log_file)
 
     def _jst_time(self):
         """Get Japan Standard Time
@@ -35,29 +26,40 @@ class Logger:
         """
         return datetime.now(self.jst).timetuple()
 
-    def _set_logger(self, numeric_level, log_file):
+    def _set_logger(self, log_file):
         """Set logger
 
         Args:
-            numeric_level (int): Numeric level of the logger.
             log_file (str): File name of the log.
         """
+        log_level = os.getenv("LOGGING_LEVEL", "DEBUG").upper()
+        numeric_level = getattr(logging, log_level, DEBUG)
         self.logger.setLevel(numeric_level)
 
-        # Set console handler
-        console_handler = StreamHandler()
-        formatter = Formatter(
-            "%(asctime)s : %(levelname)s : %(filename)s - %(message)s"
-        )
+        _format = "%(asctime)s : %(levelname)s : %(filename)s - %(message)s"
+        formatter = Formatter(_format)
         formatter.converter = self._jst_time  # Translate UTC to JST
-        console_handler.setFormatter(formatter)
 
-        # Set file handler
+        if not self.logger.hasHandlers():
+            self._set_console_handler(formatter)
+            self._set_file_handler(log_file, formatter)
+
+    def _set_console_handler(self, formatter):
+        """Set console handler
+
+        Args:
+            formatter (logging.Formatter): Formatter
+        """
+        console_handler = StreamHandler()
+        console_handler.setFormatter(formatter)
+        self.logger.addHandler(console_handler)
+
+    def _set_file_handler(self, log_file, formatter):
+        """Set file handler
+
+        Args:
+            log_file (str): File name of the log.
+        """
         file_handler = FileHandler(log_file)
         file_handler.setFormatter(formatter)
-
-        # If the logger has no handlers, add console handler and file handler
-        if not self.logger.hasHandlers():
-            # ロガーにコンソールハンドラとファイルハンドラを追加
-            self.logger.addHandler(console_handler)
-            self.logger.addHandler(file_handler)
+        self.logger.addHandler(file_handler)
