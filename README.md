@@ -1,44 +1,86 @@
-# python
+# nglcobdai-utils
 
-|                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **License**     | ![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)                                                                                                                                                                                                                                                                                                                                                                                                           |
-| **Environment** | ![Ubuntu](https://img.shields.io/badge/-Ubuntu_22.04_LTS-fad9c1.svg?logo=ubuntu&style=flat) <br> ![Docker](https://img.shields.io/badge/-Docker_v26.0.2-0055a4.svg?logo=docker&style=flat) ![Docker Compose](https://img.shields.io/badge/-Docker_Compose_v2.22.0-0055a4.svg?logo=docker&style=flat) <br> ![Python](https://img.shields.io/badge/-Python_3.10-F9DC3E.svg?logo=python&style=flat) ![Poetry](https://img.shields.io/badge/-Poetry-2c2d72.svg?logo=python&style=flat) |
-| **Technology**  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+This is a utility library for Python.
+
+|                 |                                                                                                                                                                          |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **License**     | ![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)                                                                                                 |
+| **Environment** | ![Python](https://img.shields.io/badge/-Python_3.10-F9DC3E.svg?logo=python&style=flat) ![Poetry](https://img.shields.io/badge/-Poetry-2c2d72.svg?logo=python&style=flat) |
 |                 |
 
 ## Requirements
 
-- Docker and docker-compose are required. The versions are as follows.
-  - Docker: v26.0.2
-  - Docker Compose: v2.22.0
+- Poetry
 
-## Getting Started
+## Installation
 
-### 1. Clone Repository
+### 1. Edit `pyproject.toml` file
 
-```sh
-$ git clone git@github.com:nglcobdai/python-template.git
-$ cd python-template
+Add the following to your `pyproject.toml` file.
+
+```toml
+[tool.poetry.dependencies]
+nglcobdai-utils = {git = "https://github.com/nglcobdai/nglcobdai_utils.git", branch = "feature/nglcobdai_utils" }
+
 ```
 
-### 2. Create .env file
+### 2. Install the package
 
-- copy .env.example to .env
-
-```sh
-$ cp .env{.example,}
-```
-
-### 3. Docker Build & Run
+Then run the following command.
 
 ```sh
-$ docker-compose build --no-cache
-$ docker-compose run --rm project
+$ poetry lock
 ```
 
-### 4. Run Python Script
+## Dependencies
 
-```sh
-$ python app/main.py
+Required libraries are as follows.  
+Refer to the [`pyproject.toml`](pyproject.toml) file for the latest version.
+
+| Library           | Version |
+| ----------------- | ------- |
+| pydantic          | ^1.8.2  |
+| python            | ^3.10   |
+| pydantic-settings | ^2.4.0  |
+| pytz              | ^2024.1 |
+| pyyaml            | ^6.0.2  |
+
+## Usage
+
+### Settings
+
+`Settings` class is a utility class that reads the settings from the `.env` file.
+
+1. Create a `.env` file in the root directory of your project.
+2. Add the following settings to the `.env` file.
+
+```.env
+PROJECT_NAME=hoge
 ```
+
+3. Use the `Settings` class to read the settings.
+
+```py
+from nglcobdai_utils import Settings
+settings = Settings()
+print(settings.PROJECT_NAME)
+```
+
+### Logger
+
+`Logger` class is a utility class that creates a logger object.  
+`log_file` is optional. If you want to log to a file, you can specify the file path.
+
+1. Use the `Logger` class to create a logger object.
+
+```python
+from nglcobdai_utils import Logger
+
+logger = Logger(__name__, log_file='app.log').logger
+logger.debug('This is a debug message.')
+logger.info('This is an info message.')
+logger.warning('This is a warning message.')
+logger.error('This is an error message.')
+```
+
+`app.log` will be created in the root directory of your project.
