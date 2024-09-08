@@ -32,7 +32,7 @@ jobs:
 
       - name: Test with pytest
         run: |
-          docker-compose -f docker-compose.yml --env-file .env exec -T project pytest
+          docker-compose -f docker-compose.yml --env-file .env exec -T dev pytest -v
 
       - name: Clean up
         if: always()
