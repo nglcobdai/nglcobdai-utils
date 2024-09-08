@@ -20,7 +20,7 @@ Add the following to your `pyproject.toml` file.
 
 ```toml
 [tool.poetry.dependencies]
-nglcobdai-utils = {git = "https://github.com/nglcobdai/nglcobdai_utils.git", branch = "feature/nglcobdai_utils" }
+nglcobdai-utils = {git = "https://github.com/nglcobdai/nglcobdai_utils.git", tag = "v0.0.1"}
 
 ```
 
