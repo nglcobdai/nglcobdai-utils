@@ -43,8 +43,11 @@ class Slack:
         Returns:
             dict: API response
         """
-        channel_id = self.get_channel_id(channel)
-        response = self.client.chat_postMessage(channel=channel_id, text=text, **kwargs)
+        response = self.client.chat_postMessage(
+            channel=self.get_channel_id(channel),
+            text=self._validate_text(text),
+            **kwargs
+        )
         return response
 
     def post_file(self, channel, files, **kwargs):
@@ -64,8 +67,24 @@ class Slack:
         Returns:
             dict: API response
         """
-        channel_id = self.get_channel_id(channel)
         response = self.client.files_upload_v2(
-            channel=channel_id, file_uploads=files, **kwargs
+            channel=self.get_channel_id(channel), file_uploads=files, **kwargs
         )
         return response
+
+    def _validate_text(self, text):
+        """Validate text
+
+        Args:
+            text (str): Text
+
+        Returns:
+            bool: True if valid
+        """
+        if not text:
+            return " "
+        if len(text) == 0:
+            return " "
+        if len(text) > 3000:
+            return text[:3000]
+        return text

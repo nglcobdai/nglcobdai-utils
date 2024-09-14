@@ -76,9 +76,9 @@ print(settings.PROJECT_NAME)
 #### Use the `Logger` class to create a logger object.
 
 ```python
-from nglcobdai_utils import Logger
+from nglcobdai_utils import get_logger
 
-logger = Logger(__name__, log_file='app.log').logger
+logger = get_logger(name=__name__, log_file="app.log")
 logger.debug('This is a debug message.')
 logger.info('This is an info message.')
 logger.warning('This is a warning message.')
