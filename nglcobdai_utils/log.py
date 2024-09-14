@@ -1,7 +1,6 @@
 import logging
-import os
 from datetime import datetime
-from logging import DEBUG, FileHandler, Formatter, StreamHandler
+from logging import INFO, FileHandler, Formatter, StreamHandler
 
 import pytz
 
@@ -25,14 +24,13 @@ class CustomLogger(logging.Logger):
         """
         return datetime.now(self.jst).timetuple()
 
-    def set_logger(self, log_file=None, is_stream=True):
+    def set_logger(self, log_level="INFO", log_file=None, is_stream=True):
         """Set logger
 
         Args:
             log_file (str): File name of the log.
         """
-        log_level = os.getenv("LOGGING_LEVEL", "DEBUG").upper()
-        numeric_level = getattr(logging, log_level, DEBUG)
+        numeric_level = getattr(logging, log_level, INFO)
         self.setLevel(numeric_level)
 
         _format = "%(asctime)s - %(levelname)s - %(filename)s - %(name)s - %(funcName)s - %(message)s"
@@ -109,7 +107,7 @@ class StringLogHandler(logging.Handler):
         return self.message
 
 
-def get_logger(name, log_file=None, is_stream=True):
+def get_logger(name, log_level="INFO", log_file=None, is_stream=True):
     """Get logger
 
     Args:
@@ -121,5 +119,5 @@ def get_logger(name, log_file=None, is_stream=True):
     """
     logging.setLoggerClass(CustomLogger)
     logger = logging.getLogger(name)
-    logger.set_logger(log_file, is_stream)
+    logger.set_logger(log_level, log_file, is_stream)
     return logger

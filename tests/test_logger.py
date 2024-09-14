@@ -5,7 +5,7 @@ class TestLogger:
     @classmethod
     def setup_class(cls):
         cls.logger = get_logger(
-            "test_logger", log_file="logs/test.log", is_stream=False
+            name="test_logger", log_file="logs/test.log", is_stream=False
         )
 
     def test_logger_debug(self):

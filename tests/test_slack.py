@@ -6,7 +6,7 @@ class TestSlack:
     def setup_class(cls):
         cls.settings = Settings()
         cls.logger = get_logger(
-            "test_slack_logger", log_file="logs/test.log", is_stream=False
+            name="test_slack_logger", log_file="logs/test.log", is_stream=False
         )
         cls.slack = Slack(cls.settings.SLACK_BOT_TOKEN)
 
@@ -18,7 +18,7 @@ class TestSlack:
         self.logger.info("This is a pytest message from nglcobdai-utils.")
         response = self.slack.post_text(
             channel=self.settings.SLACK_CHANNEL,
-            text=" ",
+            text=self.logger.get_log_message(),
         )
         assert response["ok"]
 
