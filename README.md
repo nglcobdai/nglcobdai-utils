@@ -6,6 +6,7 @@ This is a utility library for Python.
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **License**     | ![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)                                                                                                 |
 | **Environment** | ![Python](https://img.shields.io/badge/-Python_3.10-F9DC3E.svg?logo=python&style=flat) ![Poetry](https://img.shields.io/badge/-Poetry-2c2d72.svg?logo=python&style=flat) |
+| Technology      | ![Slack SDK](https://img.shields.io/badge/-Slack_SDK-4A154B.svg?logo=slack&style=flat)                                                                                   |
 |                 |
 
 ## Requirements
@@ -20,8 +21,7 @@ Add the following to your `pyproject.toml` file.
 
 ```toml
 [tool.poetry.dependencies]
-nglcobdai-utils = {git = "https://github.com/nglcobdai/nglcobdai_utils.git", tag = "v0.0.1"}
-
+nglcobdai-utils = {git = "https://github.com/nglcobdai/nglcobdai_utils.git", tag = "v0.1.0"}
 ```
 
 ### 2. Install the package
