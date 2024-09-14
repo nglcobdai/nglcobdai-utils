@@ -25,6 +25,8 @@ jobs:
       - name: Make .env file
         run: |
           cp .env.example .env
+          echo "SLACK_BOT_TOKEN=${{ secrets.SLACK_BOT_TOKEN }}" >> .env
+          echo "SLACK_CHANNEL=${{ secrets.SLACK_CHANNEL }}" >> .env
 
       - name: Build the containers & Start the containers
         run: |

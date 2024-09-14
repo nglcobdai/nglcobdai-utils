@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nglcobdai-utils"
-version = "0.0.1"
+version = "0.1.0"
 description = ""
 authors = ["Kodai YAMASHITA <nglcobdai@gmail.com>"]
 readme = "README.md"
@@ -10,6 +10,7 @@ python = "^3.10"
 pydantic-settings = "^2.4.0"
 pytz = "^2024.1"
 pyyaml = "^6.0.2"
+slack-sdk = "^3.32.0"
 
 
 [tool.poetry.group.dev.dependencies]
