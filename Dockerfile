@@ -3,7 +3,8 @@ FROM ubuntu:22.04
 ENV LANG=C.UTF-8 \
     LANGUAGE=en_US \
     PYTHONPATH="/root/workspace:$PYTHONPATH" \
-    DEBIAN_FRONTEND=noninteractive
+    DEBIAN_FRONTEND=noninteractive \
+    TZ=Asia/Tokyo
 
 # Pythonのインストール
 RUN apt-get update && apt-get install -y python3.10 python3-pip \

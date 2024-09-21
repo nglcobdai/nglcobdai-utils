@@ -1,11 +1,9 @@
-from nglcobdai_utils.config import Settings
-from nglcobdai_utils.log import (
+from nglcobdai_utils.log.handler import (
     ConsoleHandlerInfo,
     FileHandlerInfo,
     HandlerInfo,
     RotatingFileHandlerInfo,
     StringHandlerInfo,
     TimedRotatingFileHandlerInfo,
-    get_logger,
 )
-from nglcobdai_utils.slack import Slack
+from nglcobdai_utils.log.logger import get_logger
