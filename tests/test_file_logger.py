@@ -1,10 +1,14 @@
-from nglcobdai_utils import get_logger
+from nglcobdai_utils import FileHandlerInfo, get_logger
 
 
-class TestDefaultLogger:
+class TestFileLogger:
     @classmethod
     def setup_class(cls):
-        cls.logger = get_logger(name="test_default_logger")
+        file_handler_info = FileHandlerInfo(
+            log_level="DEBUG",
+            filename="logs/file_test.log",
+        )
+        cls.logger = get_logger(name="test_file_logger", fh_info=file_handler_info)
 
     def test_debug_logger(self):
         self.logger.debug("debug")
