@@ -1,0 +1,231 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nglcobdai_utils.slack.slack &mdash; builtins 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            builtins
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Installation/Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../API/API.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Quickstart/Quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Development.html">How to Development</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">builtins</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">nglcobdai_utils.slack.slack</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nglcobdai_utils.slack.slack</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">slack_sdk</span> <span class="kn">import</span> <span class="n">WebClient</span>
+
+
+<div class="viewcode-block" id="Slack">
+<a class="viewcode-back" href="../../../API/nglcobdai_utils.slack.html#nglcobdai_utils.slack.slack.Slack">[docs]</a>
+<span class="k">class</span> <span class="nc">Slack</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class to interact with Slack API for sending messages and uploading files.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        client (WebClient): The Slack WebClient instance to interact with Slack API.</span>
+<span class="sd">        channels (list): A list of channels retrieved from Slack.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Slack.__init__">
+<a class="viewcode-back" href="../../../API/nglcobdai_utils.slack.html#nglcobdai_utils.slack.slack.Slack.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the Slack class with an API token.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            token (str): The Slack API token.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">WebClient</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_channels</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Slack.get_channels">
+<a class="viewcode-back" href="../../../API/nglcobdai_utils.slack.html#nglcobdai_utils.slack.slack.Slack.get_channels">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_channels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exclude_archived</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve the list of channels from Slack.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            exclude_archived (bool): Whether to exclude archived channels (default: True).</span>
+<span class="sd">            **kwargs: Additional keyword arguments passed to the Slack API.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: A list of channels.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">channels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">conversations_list</span><span class="p">(</span>
+            <span class="n">exclude_archived</span><span class="o">=</span><span class="n">exclude_archived</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">channels</span><span class="p">[</span><span class="s2">&quot;channels&quot;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Slack.get_channel_id">
+<a class="viewcode-back" href="../../../API/nglcobdai_utils.slack.html#nglcobdai_utils.slack.slack.Slack.get_channel_id">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_channel_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve the ID of a specific Slack channel by its name.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            channel (str): The name of the Slack channel.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The ID of the Slack channel if found, otherwise None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">channel_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">ch</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">channel</span><span class="p">:</span>
+                <span class="n">channel_id</span> <span class="o">=</span> <span class="n">ch</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">channel_id</span></div>
+
+
+<div class="viewcode-block" id="Slack.post_text">
+<a class="viewcode-back" href="../../../API/nglcobdai_utils.slack.html#nglcobdai_utils.slack.slack.Slack.post_text">[docs]</a>
+    <span class="k">def</span> <span class="nf">post_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Post a text message to a Slack channel.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            channel (str): The name of the Slack channel.</span>
+<span class="sd">            text (str): The message to be posted.</span>
+<span class="sd">            **kwargs: Additional keyword arguments passed to the Slack API.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: The Slack API response.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">chat_postMessage</span><span class="p">(</span>
+            <span class="n">channel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_channel_id</span><span class="p">(</span><span class="n">channel</span><span class="p">),</span>
+            <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_validate_text</span><span class="p">(</span><span class="n">text</span><span class="p">),</span>
+            <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+
+<div class="viewcode-block" id="Slack.post_file">
+<a class="viewcode-back" href="../../../API/nglcobdai_utils.slack.html#nglcobdai_utils.slack.slack.Slack.post_file">[docs]</a>
+    <span class="k">def</span> <span class="nf">post_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">files</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Upload a file to a Slack channel.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            channel (str): The name of the Slack channel.</span>
+<span class="sd">            files (List[Dict]): A list of dictionaries containing file information.</span>
+<span class="sd">            **kwargs: Additional keyword arguments passed to the Slack API.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; slack.post_file(&quot;general&quot;, [{&quot;file&quot;: &quot;README.md&quot;, &quot;title&quot;: &quot;README&quot;}])</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: The Slack API response.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">files_upload_v2</span><span class="p">(</span>
+            <span class="n">channel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_channel_id</span><span class="p">(</span><span class="n">channel</span><span class="p">),</span> <span class="n">file_uploads</span><span class="o">=</span><span class="n">files</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_validate_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Validate the text message before sending to Slack.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            text (str): The text message to validate.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The original text if valid, or a truncated version if it exceeds the limit.</span>
+<span class="sd">                 Returns a single space if the text is empty.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">text</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot; &quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot; &quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3000</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">text</span><span class="p">[:</span><span class="mi">3000</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">text</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 KodaiYamashita.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
