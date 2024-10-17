@@ -25,6 +25,7 @@ extensions = [
     "sphinx.ext.coverage",  # Collect doc coverage stats
     "sphinx.ext.intersphinx",  # Link to other projects' documentation
     "myst_parser",  # Support for MyST markdown
+    "sphinx.ext.githubpages",  # Publish to GitHub Pages
 ]
 
 templates_path = ["_templates"]
