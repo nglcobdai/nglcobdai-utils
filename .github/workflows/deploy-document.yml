@@ -57,7 +57,7 @@ jobs:
             cd docs && \
             poetry run make dirhtml && \
             echo 'Checking build directory contents after building:' && \
-            ls -la build/html"
+            ls -la build"
 
       # Step 6: Set up Pages configuration for deployment
       - name: Setup Pages
@@ -67,7 +67,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: "./docs/build/html"
+          path: "./docs/build"
 
       # Step 8: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
