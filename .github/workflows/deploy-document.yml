@@ -53,13 +53,11 @@ jobs:
       # Step 5: Run commands inside the Docker container to build Sphinx documentation
       - name: Build Sphinx Documentation inside Container
         run: |
-          docker-compose -f docker-compose.yml --env-file .env exec -T dev bash -c "cd docs && poetry run make dirhtml"
-
-      #
-      - name: Check build directory contents
-        run: |
-          echo 'Checking build directory contents after building:' && \
-          ls -la build/html && \
+          docker-compose -f docker-compose.yml --env-file .env exec -T dev bash -c "
+            cd docs && \
+            poetry run make dirhtml && \
+            echo 'Checking build directory contents after building:' && \
+            ls -la build/html"
 
       # Step 6: Set up Pages configuration for deployment
       - name: Setup Pages
