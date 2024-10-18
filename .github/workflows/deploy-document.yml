@@ -51,7 +51,7 @@ jobs:
             cd docs && \
             poetry run make dirhtml && \
             pip install ghp-import && \
-            ghp-import -n -p build/dirhtml"
+            ghp-import -n -p build/html"
 
       # Step 6: Set up Pages configuration for deployment
       - name: Setup Pages
