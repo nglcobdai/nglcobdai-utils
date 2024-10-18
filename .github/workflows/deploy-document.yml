@@ -4,7 +4,7 @@ name: Deploy Sphinx Document to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    # branches: ["main"]
+    branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -55,9 +55,7 @@ jobs:
         run: |
           docker-compose -f docker-compose.yml --env-file .env exec -T dev bash -c "
             cd docs && \
-            poetry run make dirhtml && \
-            echo 'Checking build directory contents after building:' && \
-            ls -la build"
+            poetry run make dirhtml"
 
       # Step 6: Set up Pages configuration for deployment
       - name: Setup Pages
