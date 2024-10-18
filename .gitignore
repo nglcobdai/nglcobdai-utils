@@ -12,5 +12,6 @@ logs/*
 
 # output
 .DS_Store
-docs/build/doctrees/**
-docs/doctrees/**
+
+# Sphinx documentation
+docs/build/**
