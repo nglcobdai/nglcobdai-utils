@@ -10,9 +10,9 @@ from nglcobdai_utils.log import (
 )
 from nglcobdai_utils.slack import Slack
 
-__name__ = "nglcobdai_utils"
+__name__ = "nglcobdai-utils"
 __copyright__ = "2024 KodaiYamashita"
-__version__ = "0.1.0"
+__version__ = "v0.1.1"
 __license__ = "MIT"
 __author__ = "KodaiYamashita"
 __author_email__ = "nglcobdai@gmail.com"
