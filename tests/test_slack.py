@@ -1,13 +1,12 @@
-from nglcobdai_utils import Settings, Slack, get_logger
+from nglcobdai_utils import Settings, Slack, StringHandlerInfo, get_logger
 
 
 class TestSlack:
     @classmethod
     def setup_class(cls):
         cls.settings = Settings()
-        cls.logger = get_logger(
-            name="test_slack_logger", log_file="logs/test.log", is_stream=False
-        )
+        string_handler_info = StringHandlerInfo(log_level="DEBUG")
+        cls.logger = get_logger(name="test_slack_logger", sh_info=string_handler_info)
         cls.slack = Slack(cls.settings.SLACK_BOT_TOKEN)
 
     def test_slack_api_test(self):

@@ -1,10 +1,20 @@
-from nglcobdai_utils import get_logger
+from nglcobdai_utils import TimedRotatingFileHandlerInfo, get_logger
 
 
-class TestDefaultLogger:
+class TestTimedRotatingFileLogger:
     @classmethod
     def setup_class(cls):
-        cls.logger = get_logger(name="test_default_logger")
+        time_rotating_file_handler_info = TimedRotatingFileHandlerInfo(
+            log_level="DEBUG",
+            filename="logs/time_rotating_test.log",
+            when="M",
+            interval=1,
+            backupCount=3,
+        )
+        cls.logger = get_logger(
+            name="test_time_rotating_file_logger",
+            fh_info=time_rotating_file_handler_info,
+        )
 
     def test_debug_logger(self):
         self.logger.debug("debug")

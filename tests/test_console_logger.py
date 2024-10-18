@@ -1,10 +1,13 @@
-from nglcobdai_utils import get_logger
+from nglcobdai_utils import ConsoleHandlerInfo, get_logger
 
 
-class TestDefaultLogger:
+class TestConsoleLogger:
     @classmethod
     def setup_class(cls):
-        cls.logger = get_logger(name="test_default_logger")
+        console_handler_info = ConsoleHandlerInfo(log_level="DEBUG")
+        cls.logger = get_logger(
+            name="test_console_logger", ch_info=console_handler_info
+        )
 
     def test_debug_logger(self):
         self.logger.debug("debug")
