@@ -1,60 +1,73 @@
-# # Simple workflow for deploying static content to GitHub Pages
-# name: Deploy Sphinx Document to Pages
+# Workflow for deploying Sphinx documentation built within a Docker container to GitHub Pages
+name: Deploy Sphinx Document to Pages
 
-# on:
-#   # Runs on pushes targeting the default branch
-#   push:
-#     # branches: ["main"]
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
 
-#   # Allows you to run this workflow manually from the Actions tab
-#   workflow_dispatch:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
-# # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-# permissions:
-#   contents: read
-#   pages: write
-#   id-token: write
+# Set permissions for the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
-# # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-# concurrency:
-#   group: "pages"
-#   cancel-in-progress: false
+# Allow only one concurrent deployment, skipping queued runs, but do not cancel in-progress ones
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
-# jobs:
-#   # Single deploy job since we're just deploying
-#   deploy:
-#     environment:
-#       name: github-pages
-#       url: ${{ steps.deployment.outputs.page_url }}
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v3
-#       - name: Install Poetry
-#         run: pipx install poetry
-#       - name: Setup Python
-#         uses: actions/setup-python@v4
-#         with:
-#           python-version: "3.11"
-#           cache: "poetry"
-#       - name: Check poetry
-#         run: |
-#           poetry --version
-#           poetry config --list
-#       - name: Install dependencies
-#         run: poetry install
-#       - name: Build Sphinx
-#         run: |
-#           cd docs
-#           poetry run make dirhtml
-#       - name: Setup Pages
-#         uses: actions/configure-pages@v3
-#       - name: Upload artifact
-#         uses: actions/upload-pages-artifact@v2
-#         with:
-#           # Upload entire repository
-#           path: "./docs/build/html"
-#       - name: Deploy to GitHub Pages
-#         id: deployment
-#         uses: actions/deploy-pages@v2
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - uses: actions/checkout@v3
+
+      # Step 2: Install Docker Compose
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+
+      # Step 3: Create an .env file if required
+      - name: Make .env file
+        run: |
+          if [ -f .env.example ]; then
+            cp .env.example .env
+          fi
+
+      # Step 4: Build and Start the containers
+      - name: Build and Start Docker Containers
+        run: |
+          docker-compose -f docker-compose.yml --env-file .env up --build -d
+
+      # Step 5: Run commands inside the Docker container to build Sphinx documentation
+      - name: Build Sphinx Documentation inside Container
+        run: |
+          docker-compose -f docker-compose.yml --env-file .env exec -T dev bash -c "
+            cd docs && \
+            poetry run make dirhtml"
+
+      # Step 6: Set up Pages configuration for deployment
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      # Step 7: Upload the generated HTML files as artifacts for deployment
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: "./docs/build"
+
+      # Step 8: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
