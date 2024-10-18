@@ -13,3 +13,4 @@ logs/*
 # output
 .DS_Store
 docs/build/doctrees/**
+docs/doctrees/**

@@ -1,0 +1,559 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nglcobdai_utils.log &mdash; builtins 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="nglcobdai_utils.Slack" href="nglcobdai_utils.slack.html" />
+    <link rel="prev" title="nglcobdai_utils.Config" href="nglcobdai_utils.config.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            builtins
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Installation/Installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="API.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="nglcobdai_utils.config.html">nglcobdai_utils.Config</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">nglcobdai_utils.log</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nglcobdai_utils.log.handler.StringLogHandler"><code class="docutils literal notranslate"><span class="pre">StringLogHandler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.StringLogHandler.emit"><code class="docutils literal notranslate"><span class="pre">StringLogHandler.emit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.StringLogHandler.get_log_message"><code class="docutils literal notranslate"><span class="pre">StringLogHandler.get_log_message()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#nglcobdai_utils.log.handler.HandlerInfo"><code class="docutils literal notranslate"><span class="pre">HandlerInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.HandlerInfo.is_use"><code class="docutils literal notranslate"><span class="pre">HandlerInfo.is_use</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.HandlerInfo.log_level"><code class="docutils literal notranslate"><span class="pre">HandlerInfo.log_level</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.HandlerInfo.format"><code class="docutils literal notranslate"><span class="pre">HandlerInfo.format</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.HandlerInfo.get_param"><code class="docutils literal notranslate"><span class="pre">HandlerInfo.get_param()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.HandlerInfo.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">HandlerInfo.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.HandlerInfo.model_config"><code class="docutils literal notranslate"><span class="pre">HandlerInfo.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.HandlerInfo.model_fields"><code class="docutils literal notranslate"><span class="pre">HandlerInfo.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#nglcobdai_utils.log.handler.ConsoleHandlerInfo"><code class="docutils literal notranslate"><span class="pre">ConsoleHandlerInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.ConsoleHandlerInfo.format"><code class="docutils literal notranslate"><span class="pre">ConsoleHandlerInfo.format</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.ConsoleHandlerInfo.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ConsoleHandlerInfo.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.ConsoleHandlerInfo.model_config"><code class="docutils literal notranslate"><span class="pre">ConsoleHandlerInfo.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.ConsoleHandlerInfo.model_fields"><code class="docutils literal notranslate"><span class="pre">ConsoleHandlerInfo.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#nglcobdai_utils.log.handler.FileHandlerInfo"><code class="docutils literal notranslate"><span class="pre">FileHandlerInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.FileHandlerInfo.encoding"><code class="docutils literal notranslate"><span class="pre">FileHandlerInfo.encoding</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.FileHandlerInfo.filename"><code class="docutils literal notranslate"><span class="pre">FileHandlerInfo.filename</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.FileHandlerInfo.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">FileHandlerInfo.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.FileHandlerInfo.model_config"><code class="docutils literal notranslate"><span class="pre">FileHandlerInfo.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.FileHandlerInfo.model_fields"><code class="docutils literal notranslate"><span class="pre">FileHandlerInfo.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo"><code class="docutils literal notranslate"><span class="pre">TimedRotatingFileHandlerInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.backupCount"><code class="docutils literal notranslate"><span class="pre">TimedRotatingFileHandlerInfo.backupCount</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.when"><code class="docutils literal notranslate"><span class="pre">TimedRotatingFileHandlerInfo.when</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.interval"><code class="docutils literal notranslate"><span class="pre">TimedRotatingFileHandlerInfo.interval</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.atTime"><code class="docutils literal notranslate"><span class="pre">TimedRotatingFileHandlerInfo.atTime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.utc"><code class="docutils literal notranslate"><span class="pre">TimedRotatingFileHandlerInfo.utc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">TimedRotatingFileHandlerInfo.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.model_config"><code class="docutils literal notranslate"><span class="pre">TimedRotatingFileHandlerInfo.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.model_fields"><code class="docutils literal notranslate"><span class="pre">TimedRotatingFileHandlerInfo.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#nglcobdai_utils.log.handler.RotatingFileHandlerInfo"><code class="docutils literal notranslate"><span class="pre">RotatingFileHandlerInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.RotatingFileHandlerInfo.backupCount"><code class="docutils literal notranslate"><span class="pre">RotatingFileHandlerInfo.backupCount</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.RotatingFileHandlerInfo.maxBytes"><code class="docutils literal notranslate"><span class="pre">RotatingFileHandlerInfo.maxBytes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.RotatingFileHandlerInfo.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">RotatingFileHandlerInfo.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.RotatingFileHandlerInfo.model_config"><code class="docutils literal notranslate"><span class="pre">RotatingFileHandlerInfo.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.RotatingFileHandlerInfo.model_fields"><code class="docutils literal notranslate"><span class="pre">RotatingFileHandlerInfo.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#nglcobdai_utils.log.handler.StringHandlerInfo"><code class="docutils literal notranslate"><span class="pre">StringHandlerInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.StringHandlerInfo.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">StringHandlerInfo.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.StringHandlerInfo.model_config"><code class="docutils literal notranslate"><span class="pre">StringHandlerInfo.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.handler.StringHandlerInfo.model_fields"><code class="docutils literal notranslate"><span class="pre">StringHandlerInfo.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#nglcobdai_utils.log.logger.CustomLogger"><code class="docutils literal notranslate"><span class="pre">CustomLogger</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.logger.CustomLogger.__init__"><code class="docutils literal notranslate"><span class="pre">CustomLogger.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.logger.CustomLogger.settting_logger"><code class="docutils literal notranslate"><span class="pre">CustomLogger.settting_logger()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nglcobdai_utils.log.logger.CustomLogger.get_log_message"><code class="docutils literal notranslate"><span class="pre">CustomLogger.get_log_message()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#nglcobdai_utils.log.logger.get_logger"><code class="docutils literal notranslate"><span class="pre">get_logger()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="nglcobdai_utils.slack.html">nglcobdai_utils.Slack</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Quickstart/Quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Development.html">How to Development</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">builtins</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="API.html">API</a></li>
+      <li class="breadcrumb-item active">nglcobdai_utils.log</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/API/nglcobdai_utils.log.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nglcobdai_utils.log.handler">
+<span id="nglcobdai-utils-log"></span><h1>nglcobdai_utils.log<a class="headerlink" href="#module-nglcobdai_utils.log.handler" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.StringLogHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StringLogHandler</span></span><a class="reference internal" href="../_modules/nglcobdai_utils/log/handler.html#StringLogHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nglcobdai_utils.log.handler.StringLogHandler" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Handler</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.StringLogHandler.emit">
+<span class="sig-name descname"><span class="pre">emit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nglcobdai_utils/log/handler.html#StringLogHandler.emit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nglcobdai_utils.log.handler.StringLogHandler.emit" title="Link to this definition"></a></dt>
+<dd><p>Emit log</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>record</strong> (<em>logging.LogRecord</em>) – Log record</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.StringLogHandler.get_log_message">
+<span class="sig-name descname"><span class="pre">get_log_message</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nglcobdai_utils/log/handler.html#StringLogHandler.get_log_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nglcobdai_utils.log.handler.StringLogHandler.get_log_message" title="Link to this definition"></a></dt>
+<dd><p>Get last log message</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.HandlerInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">HandlerInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_use</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'INFO'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'%(asctime)s</span> <span class="pre">-</span> <span class="pre">%(levelname)s</span> <span class="pre">-</span> <span class="pre">%(filename)s</span> <span class="pre">-</span> <span class="pre">%(name)s</span> <span class="pre">-</span> <span class="pre">%(funcName)s</span> <span class="pre">-</span> <span class="pre">%(message)s'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nglcobdai_utils/log/handler.html#HandlerInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nglcobdai_utils.log.handler.HandlerInfo" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Handler information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>is_use</strong> (<em>bool</em>) – Whether to use the handler.</p></li>
+<li><p><strong>log_level</strong> (<em>str</em>) – Log level.</p></li>
+<li><p><strong>format</strong> (<em>str</em>) – Log format.
+(default: <cite>“%(asctime)s - %(levelname)s - %(filename)s - %(name)s - %(funcName)s - %(message)s”</cite>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.HandlerInfo.is_use">
+<span class="sig-name descname"><span class="pre">is_use</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.HandlerInfo.is_use" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.HandlerInfo.log_level">
+<span class="sig-name descname"><span class="pre">log_level</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.HandlerInfo.log_level" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.HandlerInfo.format">
+<span class="sig-name descname"><span class="pre">format</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.HandlerInfo.format" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.HandlerInfo.get_param">
+<span class="sig-name descname"><span class="pre">get_param</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nglcobdai_utils/log/handler.html#HandlerInfo.get_param"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nglcobdai_utils.log.handler.HandlerInfo.get_param" title="Link to this definition"></a></dt>
+<dd><p>Get handler parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Handler parameters</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.HandlerInfo.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.HandlerInfo.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.HandlerInfo.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.HandlerInfo.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.HandlerInfo.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'format':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=False,</span> <span class="pre">default='%(asctime)s</span> <span class="pre">-</span> <span class="pre">%(levelname)s</span> <span class="pre">-</span> <span class="pre">%(filename)s</span> <span class="pre">-</span> <span class="pre">%(name)s</span> <span class="pre">-</span> <span class="pre">%(funcName)s</span> <span class="pre">-</span> <span class="pre">%(message)s'),</span> <span class="pre">'is_use':</span> <span class="pre">FieldInfo(annotation=bool,</span> <span class="pre">required=False,</span> <span class="pre">default=True),</span> <span class="pre">'log_level':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=False,</span> <span class="pre">default='INFO')}</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.HandlerInfo.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.ConsoleHandlerInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ConsoleHandlerInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_use</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'INFO'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'%(asctime)s</span> <span class="pre">:</span> <span class="pre">%(levelname)s</span> <span class="pre">:</span> <span class="pre">%(filename)s</span> <span class="pre">-</span> <span class="pre">%(message)s'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nglcobdai_utils/log/handler.html#ConsoleHandlerInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nglcobdai_utils.log.handler.ConsoleHandlerInfo" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nglcobdai_utils.log.handler.HandlerInfo" title="nglcobdai_utils.log.handler.HandlerInfo"><code class="xref py py-class docutils literal notranslate"><span class="pre">HandlerInfo</span></code></a></p>
+<p>Console handler information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>format</strong> (<em>str</em><em>, </em><em>optional</em>) – Log format. (default: <cite>“%(asctime)s : %(levelname)s : %(filename)s - %(message)s”</cite>)</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.ConsoleHandlerInfo.format">
+<span class="sig-name descname"><span class="pre">format</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.ConsoleHandlerInfo.format" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.ConsoleHandlerInfo.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.ConsoleHandlerInfo.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.ConsoleHandlerInfo.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.ConsoleHandlerInfo.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.ConsoleHandlerInfo.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'format':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=False,</span> <span class="pre">default='%(asctime)s</span> <span class="pre">:</span> <span class="pre">%(levelname)s</span> <span class="pre">:</span> <span class="pre">%(filename)s</span> <span class="pre">-</span> <span class="pre">%(message)s'),</span> <span class="pre">'is_use':</span> <span class="pre">FieldInfo(annotation=bool,</span> <span class="pre">required=False,</span> <span class="pre">default=True),</span> <span class="pre">'log_level':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=False,</span> <span class="pre">default='INFO')}</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.ConsoleHandlerInfo.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.FileHandlerInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FileHandlerInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_use</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'INFO'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'%(asctime)s</span> <span class="pre">-</span> <span class="pre">%(levelname)s</span> <span class="pre">-</span> <span class="pre">%(filename)s</span> <span class="pre">-</span> <span class="pre">%(name)s</span> <span class="pre">-</span> <span class="pre">%(funcName)s</span> <span class="pre">-</span> <span class="pre">%(message)s'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PosixPath('/root/logs/default.log')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nglcobdai_utils/log/handler.html#FileHandlerInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nglcobdai_utils.log.handler.FileHandlerInfo" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nglcobdai_utils.log.handler.HandlerInfo" title="nglcobdai_utils.log.handler.HandlerInfo"><code class="xref py py-class docutils literal notranslate"><span class="pre">HandlerInfo</span></code></a></p>
+<p>File handler information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em><em> | </em><em>pathlib.Path</em><em>, </em><em>optional</em>) – Path of the log file. (default: <cite>“~/logs/test.log”</cite>)</p></li>
+<li><p><strong>encoding</strong> (<em>str</em><em>, </em><em>optional</em>) – Encoding of the log file. (default: <cite>“utf-8”</cite>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.FileHandlerInfo.encoding">
+<span class="sig-name descname"><span class="pre">encoding</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.FileHandlerInfo.encoding" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.FileHandlerInfo.filename">
+<span class="sig-name descname"><span class="pre">filename</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.FileHandlerInfo.filename" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.FileHandlerInfo.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.FileHandlerInfo.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.FileHandlerInfo.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.FileHandlerInfo.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.FileHandlerInfo.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'encoding':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=False,</span> <span class="pre">default='utf-8'),</span> <span class="pre">'filename':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">Path],</span> <span class="pre">required=False,</span> <span class="pre">default=PosixPath('/root/logs/default.log')),</span> <span class="pre">'format':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=False,</span> <span class="pre">default='%(asctime)s</span> <span class="pre">-</span> <span class="pre">%(levelname)s</span> <span class="pre">-</span> <span class="pre">%(filename)s</span> <span class="pre">-</span> <span class="pre">%(name)s</span> <span class="pre">-</span> <span class="pre">%(funcName)s</span> <span class="pre">-</span> <span class="pre">%(message)s'),</span> <span class="pre">'is_use':</span> <span class="pre">FieldInfo(annotation=bool,</span> <span class="pre">required=False,</span> <span class="pre">default=True),</span> <span class="pre">'log_level':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=False,</span> <span class="pre">default='INFO')}</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.FileHandlerInfo.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TimedRotatingFileHandlerInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_use</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'INFO'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'%(asctime)s</span> <span class="pre">-</span> <span class="pre">%(levelname)s</span> <span class="pre">-</span> <span class="pre">%(filename)s</span> <span class="pre">-</span> <span class="pre">%(name)s</span> <span class="pre">-</span> <span class="pre">%(funcName)s</span> <span class="pre">-</span> <span class="pre">%(message)s'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PosixPath('/root/logs/default.log')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backupCount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">when</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'D'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atTime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">time</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">datetime.time(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">utc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nglcobdai_utils/log/handler.html#TimedRotatingFileHandlerInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nglcobdai_utils.log.handler.FileHandlerInfo" title="nglcobdai_utils.log.handler.FileHandlerInfo"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileHandlerInfo</span></code></a></p>
+<p>Time rotating file handler information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>backupCount</strong> (<em>int</em>) – Number of backup files. (default: <cite>5</cite>)</p></li>
+<li><p><strong>when</strong> (<em>str</em>) – Type of interval. (default: <cite>“D”</cite>)</p></li>
+<li><p><strong>interval</strong> (<em>int</em>) – Interval of rotation. (default: <cite>1</cite>)</p></li>
+<li><p><strong>atTime</strong> (<em>datetime.time</em>) – JTC time to rotate. (default: <cite>datetime.time(0, 0, 0)</cite>)</p></li>
+<li><p><strong>utc</strong> (<em>bool</em>) – Whether to use UTC time. (default: <cite>False</cite>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.backupCount">
+<span class="sig-name descname"><span class="pre">backupCount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.backupCount" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.when">
+<span class="sig-name descname"><span class="pre">when</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.when" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.interval">
+<span class="sig-name descname"><span class="pre">interval</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.interval" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.atTime">
+<span class="sig-name descname"><span class="pre">atTime</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">time</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.atTime" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.utc">
+<span class="sig-name descname"><span class="pre">utc</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.utc" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'atTime':</span> <span class="pre">FieldInfo(annotation=time,</span> <span class="pre">required=False,</span> <span class="pre">default=datetime.time(0,</span> <span class="pre">0)),</span> <span class="pre">'backupCount':</span> <span class="pre">FieldInfo(annotation=int,</span> <span class="pre">required=False,</span> <span class="pre">default=5),</span> <span class="pre">'encoding':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=False,</span> <span class="pre">default='utf-8'),</span> <span class="pre">'filename':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">Path],</span> <span class="pre">required=False,</span> <span class="pre">default=PosixPath('/root/logs/default.log')),</span> <span class="pre">'format':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=False,</span> <span class="pre">default='%(asctime)s</span> <span class="pre">-</span> <span class="pre">%(levelname)s</span> <span class="pre">-</span> <span class="pre">%(filename)s</span> <span class="pre">-</span> <span class="pre">%(name)s</span> <span class="pre">-</span> <span class="pre">%(funcName)s</span> <span class="pre">-</span> <span class="pre">%(message)s'),</span> <span class="pre">'interval':</span> <span class="pre">FieldInfo(annotation=int,</span> <span class="pre">required=False,</span> <span class="pre">default=1),</span> <span class="pre">'is_use':</span> <span class="pre">FieldInfo(annotation=bool,</span> <span class="pre">required=False,</span> <span class="pre">default=True),</span> <span class="pre">'log_level':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=False,</span> <span class="pre">default='INFO'),</span> <span class="pre">'utc':</span> <span class="pre">FieldInfo(annotation=bool,</span> <span class="pre">required=False,</span> <span class="pre">default=False),</span> <span class="pre">'when':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=False,</span> <span class="pre">default='D')}</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.RotatingFileHandlerInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RotatingFileHandlerInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_use</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'INFO'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'%(asctime)s</span> <span class="pre">-</span> <span class="pre">%(levelname)s</span> <span class="pre">-</span> <span class="pre">%(filename)s</span> <span class="pre">-</span> <span class="pre">%(name)s</span> <span class="pre">-</span> <span class="pre">%(funcName)s</span> <span class="pre">-</span> <span class="pre">%(message)s'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PosixPath('/root/logs/default.log')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backupCount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxBytes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10485760</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nglcobdai_utils/log/handler.html#RotatingFileHandlerInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nglcobdai_utils.log.handler.RotatingFileHandlerInfo" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nglcobdai_utils.log.handler.FileHandlerInfo" title="nglcobdai_utils.log.handler.FileHandlerInfo"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileHandlerInfo</span></code></a></p>
+<p>Rotating file handler information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>backupCount</strong> (<em>int</em>) – Number of backup files. (default: <cite>5</cite>)</p></li>
+<li><p><strong>maxBytes</strong> (<em>int</em>) – Maximum size of the log file. (default: <cite>10485760</cite>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.RotatingFileHandlerInfo.backupCount">
+<span class="sig-name descname"><span class="pre">backupCount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.RotatingFileHandlerInfo.backupCount" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.RotatingFileHandlerInfo.maxBytes">
+<span class="sig-name descname"><span class="pre">maxBytes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.RotatingFileHandlerInfo.maxBytes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.RotatingFileHandlerInfo.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.RotatingFileHandlerInfo.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.RotatingFileHandlerInfo.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.RotatingFileHandlerInfo.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.RotatingFileHandlerInfo.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'backupCount':</span> <span class="pre">FieldInfo(annotation=int,</span> <span class="pre">required=False,</span> <span class="pre">default=5),</span> <span class="pre">'encoding':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=False,</span> <span class="pre">default='utf-8'),</span> <span class="pre">'filename':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">Path],</span> <span class="pre">required=False,</span> <span class="pre">default=PosixPath('/root/logs/default.log')),</span> <span class="pre">'format':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=False,</span> <span class="pre">default='%(asctime)s</span> <span class="pre">-</span> <span class="pre">%(levelname)s</span> <span class="pre">-</span> <span class="pre">%(filename)s</span> <span class="pre">-</span> <span class="pre">%(name)s</span> <span class="pre">-</span> <span class="pre">%(funcName)s</span> <span class="pre">-</span> <span class="pre">%(message)s'),</span> <span class="pre">'is_use':</span> <span class="pre">FieldInfo(annotation=bool,</span> <span class="pre">required=False,</span> <span class="pre">default=True),</span> <span class="pre">'log_level':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=False,</span> <span class="pre">default='INFO'),</span> <span class="pre">'maxBytes':</span> <span class="pre">FieldInfo(annotation=int,</span> <span class="pre">required=False,</span> <span class="pre">default=10485760)}</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.RotatingFileHandlerInfo.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.StringHandlerInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StringHandlerInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_use</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'INFO'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'%(asctime)s</span> <span class="pre">-</span> <span class="pre">%(levelname)s</span> <span class="pre">-</span> <span class="pre">%(filename)s</span> <span class="pre">-</span> <span class="pre">%(name)s</span> <span class="pre">-</span> <span class="pre">%(funcName)s</span> <span class="pre">-</span> <span class="pre">%(message)s'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nglcobdai_utils/log/handler.html#StringHandlerInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nglcobdai_utils.log.handler.StringHandlerInfo" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nglcobdai_utils.log.handler.HandlerInfo" title="nglcobdai_utils.log.handler.HandlerInfo"><code class="xref py py-class docutils literal notranslate"><span class="pre">HandlerInfo</span></code></a></p>
+<p>String handler information</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.StringHandlerInfo.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.StringHandlerInfo.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.StringHandlerInfo.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.StringHandlerInfo.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.handler.StringHandlerInfo.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'format':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=False,</span> <span class="pre">default='%(asctime)s</span> <span class="pre">-</span> <span class="pre">%(levelname)s</span> <span class="pre">-</span> <span class="pre">%(filename)s</span> <span class="pre">-</span> <span class="pre">%(name)s</span> <span class="pre">-</span> <span class="pre">%(funcName)s</span> <span class="pre">-</span> <span class="pre">%(message)s'),</span> <span class="pre">'is_use':</span> <span class="pre">FieldInfo(annotation=bool,</span> <span class="pre">required=False,</span> <span class="pre">default=True),</span> <span class="pre">'log_level':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=False,</span> <span class="pre">default='INFO')}</span></em><a class="headerlink" href="#nglcobdai_utils.log.handler.StringHandlerInfo.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-nglcobdai_utils.log.logger">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.logger.CustomLogger">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CustomLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nglcobdai_utils/log/logger.html#CustomLogger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nglcobdai_utils.log.logger.CustomLogger" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.logger.CustomLogger.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nglcobdai_utils/log/logger.html#CustomLogger.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nglcobdai_utils.log.logger.CustomLogger.__init__" title="Link to this definition"></a></dt>
+<dd><p>Constructor of CustomLogger</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the logger.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.logger.CustomLogger.settting_logger">
+<span class="sig-name descname"><span class="pre">settting_logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ch_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fh_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh_info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nglcobdai_utils/log/logger.html#CustomLogger.settting_logger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nglcobdai_utils.log.logger.CustomLogger.settting_logger" title="Link to this definition"></a></dt>
+<dd><p>Set logger</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ch_info</strong> (<a class="reference internal" href="#nglcobdai_utils.log.handler.ConsoleHandlerInfo" title="nglcobdai_utils.log.handler.ConsoleHandlerInfo"><em>ConsoleHandlerInfo</em></a>) – Console handler information.</p></li>
+<li><p><strong>fh_info</strong> (<a class="reference internal" href="#nglcobdai_utils.log.handler.FileHandlerInfo" title="nglcobdai_utils.log.handler.FileHandlerInfo"><em>FileHandlerInfo</em></a><em> | </em><a class="reference internal" href="#nglcobdai_utils.log.handler.RotatingFileHandlerInfo" title="nglcobdai_utils.log.handler.RotatingFileHandlerInfo"><em>RotatingFileHandlerInfo</em></a><em> | </em><a class="reference internal" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo" title="nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo"><em>TimedRotatingFileHandlerInfo</em></a>) – File handler information.</p></li>
+<li><p><strong>sh_info</strong> (<a class="reference internal" href="#nglcobdai_utils.log.handler.StringHandlerInfo" title="nglcobdai_utils.log.handler.StringHandlerInfo"><em>StringHandlerInfo</em></a>) – String handler information.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.logger.CustomLogger.get_log_message">
+<span class="sig-name descname"><span class="pre">get_log_message</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nglcobdai_utils/log/logger.html#CustomLogger.get_log_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nglcobdai_utils.log.logger.CustomLogger.get_log_message" title="Link to this definition"></a></dt>
+<dd><p>Get last log message</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nglcobdai_utils.log.logger.get_logger">
+<span class="sig-name descname"><span class="pre">get_logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ch_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ConsoleHandlerInfo(is_use=False,</span> <span class="pre">log_level='INFO',</span> <span class="pre">format='%(asctime)s</span> <span class="pre">:</span> <span class="pre">%(levelname)s</span> <span class="pre">:</span> <span class="pre">%(filename)s</span> <span class="pre">-</span> <span class="pre">%(message)s')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fh_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">FileHandlerInfo(is_use=False,</span> <span class="pre">log_level='INFO',</span> <span class="pre">format='%(asctime)s</span> <span class="pre">-</span> <span class="pre">%(levelname)s</span> <span class="pre">-</span> <span class="pre">%(filename)s</span> <span class="pre">-</span> <span class="pre">%(name)s</span> <span class="pre">-</span> <span class="pre">%(funcName)s</span> <span class="pre">-</span> <span class="pre">%(message)s',</span> <span class="pre">filename=PosixPath('/root/logs/default.log'),</span> <span class="pre">encoding='utf-8')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">StringHandlerInfo(is_use=False,</span> <span class="pre">log_level='INFO',</span> <span class="pre">format='%(asctime)s</span> <span class="pre">-</span> <span class="pre">%(levelname)s</span> <span class="pre">-</span> <span class="pre">%(filename)s</span> <span class="pre">-</span> <span class="pre">%(name)s</span> <span class="pre">-</span> <span class="pre">%(funcName)s</span> <span class="pre">-</span> <span class="pre">%(message)s')</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nglcobdai_utils/log/logger.html#get_logger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nglcobdai_utils.log.logger.get_logger" title="Link to this definition"></a></dt>
+<dd><p>Retrieve a configured logger.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – The name of the logger.</p></li>
+<li><p><strong>ch_info</strong> (<a class="reference internal" href="#nglcobdai_utils.log.handler.ConsoleHandlerInfo" title="nglcobdai_utils.log.handler.ConsoleHandlerInfo"><em>ConsoleHandlerInfo</em></a><em>, </em><em>optional</em>) – Console handler information (default: ConsoleHandlerInfo(is_use=False)).</p></li>
+<li><p><strong>fh_info</strong> (<a class="reference internal" href="#nglcobdai_utils.log.handler.FileHandlerInfo" title="nglcobdai_utils.log.handler.FileHandlerInfo"><em>FileHandlerInfo</em></a><em> | </em><a class="reference internal" href="#nglcobdai_utils.log.handler.RotatingFileHandlerInfo" title="nglcobdai_utils.log.handler.RotatingFileHandlerInfo"><em>RotatingFileHandlerInfo</em></a><em> | </em><a class="reference internal" href="#nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo" title="nglcobdai_utils.log.handler.TimedRotatingFileHandlerInfo"><em>TimedRotatingFileHandlerInfo</em></a><em>, </em><em>optional</em>) – File handler information (default: FileHandlerInfo(is_use=False)).</p></li>
+<li><p><strong>sh_info</strong> (<a class="reference internal" href="#nglcobdai_utils.log.handler.StringHandlerInfo" title="nglcobdai_utils.log.handler.StringHandlerInfo"><em>StringHandlerInfo</em></a><em>, </em><em>optional</em>) – String handler information (default: StringHandlerInfo(is_use=False)).</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">console_handler_info</span> <span class="o">=</span> <span class="n">ConsoleHandlerInfo</span><span class="p">(</span><span class="n">log_level</span><span class="o">=</span><span class="s2">&quot;INFO&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file_handler_info</span> <span class="o">=</span> <span class="n">FileHandlerInfo</span><span class="p">(</span><span class="n">log_level</span><span class="o">=</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;~/logs/test.log&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">string_handler_info</span> <span class="o">=</span> <span class="n">StringHandlerInfo</span><span class="p">(</span><span class="n">log_level</span><span class="o">=</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test_logger&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">ch_info</span><span class="o">=</span><span class="n">console_handler_info</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">fh_info</span><span class="o">=</span><span class="n">file_handler_info</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">sh_info</span><span class="o">=</span><span class="n">string_handler_info</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The configured logger instance.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>logging.Logger</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nglcobdai_utils.config.html" class="btn btn-neutral float-left" title="nglcobdai_utils.Config" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nglcobdai_utils.slack.html" class="btn btn-neutral float-right" title="nglcobdai_utils.Slack" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 KodaiYamashita.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
