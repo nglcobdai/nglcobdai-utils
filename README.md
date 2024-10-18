@@ -12,4 +12,4 @@ It includes various utilities such as configuration, logging, and Slack notifica
 
 ## Documentation
 
-Refer to the Official Documentation for Installation, Quick Start, and API Reference.
+Refer to the [Official Documentation](https://nglcobdai.github.io/nglcobdai-utils/) for Installation, Quick Start, and API Reference.
