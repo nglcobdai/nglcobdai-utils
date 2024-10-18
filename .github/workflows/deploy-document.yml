@@ -3,7 +3,7 @@ name: Deploy Sphinx Document to Pages
 
 on:
   push:
-    branches: ["main"]
+    # branches: ["main"]
   workflow_dispatch:
 
 permissions:
