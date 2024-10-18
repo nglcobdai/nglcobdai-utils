@@ -2,26 +2,20 @@
 name: Deploy Sphinx Document to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
-    # branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
+    branches: ["main"]
   workflow_dispatch:
 
-# Set permissions for the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping queued runs, but do not cancel in-progress ones
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
@@ -50,22 +44,20 @@ jobs:
         run: |
           docker-compose -f docker-compose.yml --env-file .env up --build -d
 
-      # Step 5: Run commands inside the Docker container to build Sphinx documentation
-      - name: Build Sphinx Documentation inside Container
+      # Step 5: Run commands inside the Docker container to build Sphinx documentation and upload it
+      - name: Build Sphinx Documentation and Deploy to Pages inside Container
         run: |
-          docker-compose -f docker-compose.yml --env-file .env exec -T dev bash -c "cd docs && poetry run make dirhtml"
+          docker-compose -f docker-compose.yml --env-file .env exec -T dev bash -c "
+            cd docs && \
+            poetry run make dirhtml && \
+            pip install ghp-import && \
+            ghp-import -n -p build/dirhtml"
 
       # Step 6: Set up Pages configuration for deployment
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
-      # Step 7: Upload the generated HTML files as artifacts for deployment
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: "./docs/build/dirhtml"
-
-      # Step 8: Deploy to GitHub Pages
+      # Step 7: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
