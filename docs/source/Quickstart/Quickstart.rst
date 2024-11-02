@@ -7,3 +7,4 @@ Quickstart
    Settings
    Logger
    Slack
+   Messenger
