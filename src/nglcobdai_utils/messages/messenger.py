@@ -9,29 +9,43 @@ from pathlib import Path
 
 
 class Messenger:
-    """Messenger class to retrieve messages from a message file.
+    """Messenger class to retrieve messages from a message file."""
 
-    Attributes:
-        ERROR_MESSAGE_FILE_NOT_FOUND (str): Error message for missing message file.
-        ERROR_MESSAGE_MISSING_SECTION_HEADER (str): Error message for missing section header in the message file.
-        ERROR_MESSAGE_SECTION_NOT_FOUND (str): Error message for missing section in the message file.
-        ERROR_MESSAGE_KEY_NOT_FOUND (str): Error message for missing key in the message file.
-        ERROR_MESSAGE_UNEXPECTED (str): Error message for unexpected error while retrieving message.
-        ERROR_MESSAGE_ARGS_MISSING (str): Error message for missing arguments in the message template.
-    """
+    ERROR_MESSAGE_FILE_NOT_FOUND = (
+        "The message file could not be found. "
+        "Please check the file path and try again."
+    )
+    """str: Error message displayed when the message file is missing."""
 
-    ERROR_MESSAGE_FILE_NOT_FOUND = "The message file could not be found. \
-            Please check the file path and try again."
-    ERROR_MESSAGE_MISSING_SECTION_HEADER = "The message file is missing a required section header. \
-        Please add the section header [XXX] to resolve this issue."
-    ERROR_MESSAGE_SECTION_NOT_FOUND = "The specified message section could not be found. \
-        Ensure the section name is correct or add the section if missing."
-    ERROR_MESSAGE_KEY_NOT_FOUND = "The specified message code could not be found. \
-        Verify the key name or add it to the relevant section in the file."
-    ERROR_MESSAGE_UNEXPECTED = "An unexpected error occurred while retrieving the message. \
-        Please review the file format and content for any irregularities."
-    ERROR_MESSAGE_ARGS_MISSING = "Some required arguments are missing from the template. \
-        Please provide all necessary arguments and try again."
+    ERROR_MESSAGE_MISSING_SECTION_HEADER = (
+        "The message file is missing a required section header. "
+        "Please add the section header [XXX] to resolve this issue."
+    )
+    """str: Error message for missing section header in the message file."""
+
+    ERROR_MESSAGE_SECTION_NOT_FOUND = (
+        "The specified message section could not be found. "
+        "Ensure the section name is correct or add the section if missing."
+    )
+    """str: Error message displayed when the message section is missing."""
+
+    ERROR_MESSAGE_KEY_NOT_FOUND = (
+        "The specified message code could not be found. "
+        "Verify the key name or add it to the relevant section in the file."
+    )
+    """str: Error message displayed when the specified message key is not found."""
+
+    ERROR_MESSAGE_UNEXPECTED = (
+        "An unexpected error occurred while retrieving the message. "
+        "Please review the file format and content for any irregularities."
+    )
+    """str: Error message displayed when an unexpected error occurs."""
+
+    ERROR_MESSAGE_ARGS_MISSING = (
+        "Some required arguments are missing from the template. "
+        "Please provide all necessary arguments and try again."
+    )
+    """str: Error message displayed when arguments are missing in the template."""
 
     def __init__(self, filepath: str | Path) -> None:
         """Constructor of Message
