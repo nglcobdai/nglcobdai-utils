@@ -2,7 +2,7 @@ Version History
 ===============
 
 v0.2.0 - Messenger, TemplateError Feature Release
-------------------------------------------------
+-------------------------------------------------
 - Added Messenger
 - Added TemplateError
 
