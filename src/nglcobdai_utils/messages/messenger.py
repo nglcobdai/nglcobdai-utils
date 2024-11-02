@@ -8,8 +8,8 @@ from configparser import (
 from pathlib import Path
 
 
-class Message:
-    """Message class to retrieve messages from a message file.
+class Messenger:
+    """Messenger class to retrieve messages from a message file.
 
     Attributes:
         ERROR_MESSAGE_FILE_NOT_FOUND (str): Error message for missing message file.
@@ -56,14 +56,14 @@ class Message:
             ValueError: If the file is not found or if the file is missing section
         """
         if not filepath.exists():
-            raise ValueError(Message.ERROR_MESSAGE_FILE_NOT_FOUND)
+            raise ValueError(Messenger.ERROR_MESSAGE_FILE_NOT_FOUND)
 
         try:
             config = ConfigParser()
             config.read(str(filepath), encoding="utf-8")
             return config
         except MissingSectionHeaderError:
-            raise ValueError(Message.ERROR_MESSAGE_MISSING_SECTION_HEADER)
+            raise ValueError(Messenger.ERROR_MESSAGE_MISSING_SECTION_HEADER)
 
     def __call__(self, section: str, key: str, **kwargs) -> str:
         """Get message
@@ -79,16 +79,16 @@ class Message:
         Raises:
             ValueError: If message section or key is not found, or if required arguments are missing.
         """
-        template = self._message(section, key)
-        try:
-            return Template(template).substitute(**kwargs)
-        except KeyError:
-            raise ValueError(self.ERROR_MESSAGE_ARGS_MISSING)
+        template = self._template(self.messages, section, key)
+        message = self._substitute(template, **kwargs)
+        return message
 
-    def _message(self, section: str, key: str) -> str:
+    @staticmethod
+    def _template(messages: ConfigParser, section: str, key: str) -> str:
         """Get message string from section and key
 
         Args:
+            messages (ConfigParser): Message file
             key (str): Key
             section (str): Section
 
@@ -100,10 +100,29 @@ class Message:
 
         """
         try:
-            return self.messages.get(section, key)
+            return messages.get(section, key)
         except NoSectionError:
-            raise ValueError(self.ERROR_MESSAGE_SECTION_NOT_FOUND)
+            raise ValueError(Messenger.ERROR_MESSAGE_SECTION_NOT_FOUND)
         except NoOptionError:
-            raise ValueError(self.ERROR_MESSAGE_KEY_NOT_FOUND)
+            raise ValueError(Messenger.ERROR_MESSAGE_KEY_NOT_FOUND)
         except Exception:
-            raise ValueError(self.ERROR_MESSAGE_UNEXPECTED)
+            raise ValueError(Messenger.ERROR_MESSAGE_UNEXPECTED)
+
+    @staticmethod
+    def _substitute(template: str, **kwargs) -> str:
+        """Substitute template with arguments
+
+        Args:
+            template (str): Template
+            kwargs (dict): Arguments
+
+        Returns:
+            str: Message
+
+        Raises:
+            ValueError: If required arguments are missing
+        """
+        try:
+            return Template(template).substitute(**kwargs)
+        except KeyError:
+            raise ValueError(Messenger.ERROR_MESSAGE_ARGS_MISSING)

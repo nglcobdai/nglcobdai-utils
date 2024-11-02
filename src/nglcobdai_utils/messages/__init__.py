@@ -1,1 +1,1 @@
-from nglcobdai_utils.messages.message import Message
+from nglcobdai_utils.messages.messenger import Messenger

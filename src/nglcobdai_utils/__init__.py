@@ -8,7 +8,7 @@ from nglcobdai_utils.log import (
     TimedRotatingFileHandlerInfo,
     get_logger,
 )
-from nglcobdai_utils.messages import Message
+from nglcobdai_utils.messages import Messenger
 from nglcobdai_utils.slack import Slack
 
 __name__ = "nglcobdai-utils"
