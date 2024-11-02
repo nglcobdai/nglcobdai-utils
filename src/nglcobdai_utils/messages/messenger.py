@@ -7,7 +7,7 @@ from configparser import (
 from pathlib import Path
 from string import Template
 
-from src.nglcobdai_utils.messages.error import (
+from nglcobdai_utils.messages.error import (
     MessengerFileNotFoundError,
     MessengerKeyNotFoundError,
     MessengerMissingArgumentsError,

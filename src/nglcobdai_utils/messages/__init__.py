@@ -1,5 +1,5 @@
 from nglcobdai_utils.messages.messenger import Messenger
-from src.nglcobdai_utils.messages.error import (
+from nglcobdai_utils.messages.error import (
     MessengerFileNotFoundError,
     MessengerKeyNotFoundError,
     MessengerMissingArgumentsError,
