@@ -2,6 +2,7 @@ from nglcobdai_utils import (
     ConsoleHandlerInfo,
     FileHandlerInfo,
     HandlerInfo,
+    Message,
     RotatingFileHandlerInfo,
     Settings,
     Slack,
