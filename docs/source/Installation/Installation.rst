@@ -44,7 +44,7 @@ Install
     .. code-block:: toml
 
         [tool.poetry.dependencies]
-        nglcobdai-utils = {git = "https://github.com/nglcobdai/nglcobdai_utils.git", tag = "vxxx"}
+        nglcobdai-utils = {git = "https://github.com/nglcobdai/nglcobdai-utils.git", tag = "v0.2.0"}
 
 2. **Install the package**
 

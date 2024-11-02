@@ -1,7 +1,7 @@
 nglcobdai-utils
 ===============
 
-.. image:: https://img.shields.io/badge/version-v0.1.1-blue.svg?style=flat
+.. image:: https://img.shields.io/badge/version-v0.2.0-blue.svg?style=flat
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg?style=flat
 
 | This is a utility library to simplify the development of Python applications.
@@ -14,4 +14,5 @@ nglcobdai-utils
    Installation/Installation
    API/API
    Quickstart/Quickstart
-   Development
+   Version/Version
+   Development/Development
