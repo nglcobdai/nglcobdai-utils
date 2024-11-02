@@ -1,4 +1,4 @@
-nglcobdai\_utils.Messenger
+nglcobdai\_utils.messages
 ===============================
 
 .. automodule:: nglcobdai_utils.messages.messenger
@@ -6,3 +6,7 @@ nglcobdai\_utils.Messenger
    :undoc-members:
    :show-inheritance:
 
+.. automodule:: nglcobdai_utils.messages.error
+   :members:
+   :undoc-members:
+   :show-inheritance:
