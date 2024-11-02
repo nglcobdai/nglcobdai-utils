@@ -1,51 +1,24 @@
-from string import Template
 from configparser import (
     ConfigParser,
-    NoSectionError,
-    NoOptionError,
     MissingSectionHeaderError,
+    NoOptionError,
+    NoSectionError,
 )
 from pathlib import Path
+from string import Template
+
+from src.nglcobdai_utils.messages.error import (
+    MessengerFileNotFoundError,
+    MessengerKeyNotFoundError,
+    MessengerMissingArgumentsError,
+    MessengerMissingSectionHeaderError,
+    MessengerSectionNotFoundError,
+    MessengerUnexpectedError,
+)
 
 
 class Messenger:
     """Messenger class to retrieve messages from a message file."""
-
-    ERROR_MESSAGE_FILE_NOT_FOUND = (
-        "The message file could not be found. "
-        "Please check the file path and try again."
-    )
-    """str: Error message displayed when the message file is missing."""
-
-    ERROR_MESSAGE_MISSING_SECTION_HEADER = (
-        "The message file is missing a required section header. "
-        "Please add the section header [XXX] to resolve this issue."
-    )
-    """str: Error message for missing section header in the message file."""
-
-    ERROR_MESSAGE_SECTION_NOT_FOUND = (
-        "The specified message section could not be found. "
-        "Ensure the section name is correct or add the section if missing."
-    )
-    """str: Error message displayed when the message section is missing."""
-
-    ERROR_MESSAGE_KEY_NOT_FOUND = (
-        "The specified message code could not be found. "
-        "Verify the key name or add it to the relevant section in the file."
-    )
-    """str: Error message displayed when the specified message key is not found."""
-
-    ERROR_MESSAGE_UNEXPECTED = (
-        "An unexpected error occurred while retrieving the message. "
-        "Please review the file format and content for any irregularities."
-    )
-    """str: Error message displayed when an unexpected error occurs."""
-
-    ERROR_MESSAGE_ARGS_MISSING = (
-        "Some required arguments are missing from the template. "
-        "Please provide all necessary arguments and try again."
-    )
-    """str: Error message displayed when arguments are missing in the template."""
 
     def __init__(self, filepath: str | Path) -> None:
         """Constructor of Message
@@ -67,17 +40,20 @@ class Messenger:
             ConfigParser: Message file
 
         Raises:
-            ValueError: If the file is not found or if the file is missing section
+            MessengerFileNotFoundError: If the message file is not found.
+            MessengerMissingSectionHeaderError: If the message file is missing a required section header.
         """
         if not filepath.exists():
-            raise ValueError(Messenger.ERROR_MESSAGE_FILE_NOT_FOUND)
+            raise MessengerFileNotFoundError()
 
         try:
             config = ConfigParser()
             config.read(str(filepath), encoding="utf-8")
             return config
         except MissingSectionHeaderError:
-            raise ValueError(Messenger.ERROR_MESSAGE_MISSING_SECTION_HEADER)
+            raise MessengerMissingSectionHeaderError()
+        except Exception:
+            raise MessengerUnexpectedError()
 
     def __call__(self, section: str, key: str, **kwargs) -> str:
         """Get message
@@ -110,17 +86,19 @@ class Messenger:
             str: Message
 
         Raises:
-            ValueError: If message section or key is not found
+            MessengerSectionNotFoundError: If section is not found
+            MessengerKeyNotFoundError: If key is not found
+            MessengerUnexpectedError: If unexpected error occurs
 
         """
         try:
             return messages.get(section, key)
         except NoSectionError:
-            raise ValueError(Messenger.ERROR_MESSAGE_SECTION_NOT_FOUND)
+            raise MessengerSectionNotFoundError()
         except NoOptionError:
-            raise ValueError(Messenger.ERROR_MESSAGE_KEY_NOT_FOUND)
+            raise MessengerKeyNotFoundError()
         except Exception:
-            raise ValueError(Messenger.ERROR_MESSAGE_UNEXPECTED)
+            raise MessengerUnexpectedError()
 
     @staticmethod
     def _substitute(template: str, **kwargs) -> str:
@@ -134,9 +112,11 @@ class Messenger:
             str: Message
 
         Raises:
-            ValueError: If required arguments are missing
+            MessengerMissingArgumentsError: If required arguments are missing
         """
         try:
             return Template(template).substitute(**kwargs)
         except KeyError:
-            raise ValueError(Messenger.ERROR_MESSAGE_ARGS_MISSING)
+            raise MessengerMissingArgumentsError()
+        except Exception:
+            raise MessengerUnexpectedError()

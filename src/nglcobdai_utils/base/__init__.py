@@ -1,1 +1,1 @@
-from nglcobdai_utils.base.exception import TemplateError
+from src.nglcobdai_utils.base.template import TemplateError
