@@ -27,3 +27,7 @@ __license__ = "MIT"
 __author__ = "KodaiYamashita"
 __author_email__ = "nglcobdai@gmail.com"
 __url__ = "https://github.com/nglcobdai/nglcobdai-utils.git"
+__doc__ = (
+    "This is a utility library to simplify the development of Python applications."
+    " Refer to the <nglcobdai.github.io/nglcobdai-utils/> for more information."
+)
