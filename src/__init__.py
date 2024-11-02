@@ -7,6 +7,7 @@ from nglcobdai_utils import (
     Settings,
     Slack,
     StringHandlerInfo,
+    TemplateError,
     TimedRotatingFileHandlerInfo,
     __author__,
     __author_email__,
