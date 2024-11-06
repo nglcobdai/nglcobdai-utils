@@ -7,7 +7,7 @@ ENV LANG=C.UTF-8 \
     TZ=Asia/Tokyo
 
 # Pythonのインストール
-RUN apt-get update && apt-get install -y python3.10 python3-pip python3.10-venv \
+RUN apt-get update && apt-get install -y python3.10 python3-pip \
     && ln -s /usr/bin/python3.10 /usr/bin/python \
     && rm -rf /var/lib/apt/lists/*
 
