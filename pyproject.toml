@@ -31,7 +31,6 @@ build-backend = "poetry.core.masonry.api"
 max-line-length = 120
 
 [tool.poetry.packages]
-# This specifies how to include `nglcobdai_utils/nglcobdai_utils` 
 packages = [
     { include = "nglcobdai_utils", from = "src/nglcobdai_utils" }
 ]
