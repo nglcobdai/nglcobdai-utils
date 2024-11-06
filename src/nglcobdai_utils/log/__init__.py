@@ -14,7 +14,7 @@ logger = None
 
 
 def get_logger(
-    name,
+    name="",
     ch_info=ConsoleHandlerInfo(is_use=False),
     fh_info=FileHandlerInfo(is_use=False),
     sh_info=StringHandlerInfo(is_use=False),
@@ -49,7 +49,7 @@ def get_logger(
 
 
 def set_logger(
-    name,
+    name="",
     ch_info=ConsoleHandlerInfo(is_use=False),
     fh_info=FileHandlerInfo(is_use=False),
     sh_info=StringHandlerInfo(is_use=False),
@@ -79,4 +79,5 @@ def set_logger(
     """
     global logger
     logger = get_logger(name, ch_info, fh_info, sh_info)
-    logger.settting_logger(ch_info, fh_info, sh_info)
+    print(str(logger))
+    # logger.settting_logger(ch_info, fh_info, sh_info)
