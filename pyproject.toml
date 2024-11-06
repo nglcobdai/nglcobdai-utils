@@ -32,5 +32,5 @@ max-line-length = 120
 
 [tool.poetry.packages]
 packages = [
-    { include = "nglcobdai_utils", from = "src/nglcobdai_utils" }
+    { include = "nglcobdai_utils", from = "src" }
 ]
