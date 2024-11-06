@@ -9,6 +9,7 @@ from nglcobdai_utils.log import (
     TimedRotatingFileHandlerInfo,
     get_logger,
     logger,
+    set_logger,
 )
 from nglcobdai_utils.messages import (
     Messenger,
