@@ -29,3 +29,8 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.flake8]
 max-line-length = 120
+
+[tool.poetry.packages]
+packages = [
+    { include = "nglcobdai_utils", from = "src" }
+]
