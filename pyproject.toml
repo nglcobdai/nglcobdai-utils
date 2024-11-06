@@ -4,6 +4,10 @@ version = "v0.2.0"
 description = ""
 authors = ["Kodai YAMASHITA <nglcobdai@gmail.com>"]
 readme = "README.md"
+packages = [
+    { include = "nglcobdai_utils", from = "src" }
+]
+
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -29,8 +33,3 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.flake8]
 max-line-length = 120
-
-[tool.poetry.packages]
-packages = [
-    { include = "nglcobdai_utils", from = "src" }
-]
