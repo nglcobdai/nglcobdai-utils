@@ -7,3 +7,5 @@ from nglcobdai_utils.log.handler import (
     TimedRotatingFileHandlerInfo,
 )
 from nglcobdai_utils.log.logger import get_logger
+
+logger = get_logger(__name__, ConsoleHandlerInfo(is_use=True))

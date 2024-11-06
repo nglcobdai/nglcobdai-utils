@@ -23,4 +23,5 @@ from nglcobdai_utils import (
     __url__,
     __version__,
     get_logger,
+    logger,
 )
