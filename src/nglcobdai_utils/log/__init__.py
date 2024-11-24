@@ -79,5 +79,3 @@ def set_logger(
     """
     global logger
     logger = get_logger(name, ch_info, fh_info, sh_info)
-    print(str(logger))
-    # logger.settting_logger(ch_info, fh_info, sh_info)
