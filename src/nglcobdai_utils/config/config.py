@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 
 import yaml
@@ -8,9 +7,6 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     model_config = ConfigDict(
-        env_file=(
-            ".env" if os.getenv("ENV", None) is None else f".env.{os.getenv('ENV')}"
-        ),
         env_file_encoding="utf-8",
         extra="allow",
         case_sensitive=True,

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nglcobdai-utils"
-version = "v0.2.0"
+version = "v0.2.1"
 description = ""
 authors = ["Kodai YAMASHITA <nglcobdai@gmail.com>"]
 readme = "README.md"
