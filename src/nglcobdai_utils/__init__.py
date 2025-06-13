@@ -1,3 +1,4 @@
+from nglcobdai_utils import log as logging
 from nglcobdai_utils.base import TemplateError
 from nglcobdai_utils.config import Settings
 from nglcobdai_utils.log import (
@@ -8,6 +9,7 @@ from nglcobdai_utils.log import (
     StringHandlerInfo,
     TimedRotatingFileHandlerInfo,
     get_logger,
+    set_logger,
 )
 from nglcobdai_utils.messages import (
     Messenger,

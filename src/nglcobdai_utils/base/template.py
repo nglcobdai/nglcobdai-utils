@@ -1,3 +1,6 @@
+from nglcobdai_utils import log as logging
+
+
 class TemplateError(Exception):
     """
     Custom exception that formats error messages with a code and note.
@@ -21,6 +24,9 @@ class TemplateError(Exception):
             **kwargs: Formatting arguments for the note.
         """
         self.kwargs = kwargs
+
+        if logging.logger is not None:
+            logging.logger.error(self.message)
 
     def __str__(self):
         """

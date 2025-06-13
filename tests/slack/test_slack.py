@@ -26,8 +26,7 @@ class TestSlack:
         response = self.slack.post_file(
             channel=self.settings.SLACK_CHANNEL,
             files=[
-                {"file": "README.md", "title": "README.md"},
-                {"file": "LICENSE", "title": "LICENSE"},
+                {"file": "sample/file.test.txt", "title": "file.test.txt"},
             ],
             initial_comment=self.logger.get_log_message(),
         )
